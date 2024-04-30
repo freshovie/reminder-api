@@ -12,14 +12,6 @@ router.get("/", (req, res) => {
   res.json(reminders); // Return all reminders
 });
 
-// GET a specific reminder by ID
-router.get("/:id", (req, res) => {
-  // Find the reminder with the given ID
-  const reminder = reminders.find((reminder) => reminder.id === req.params.id);
-  if (!reminder)
-    return res.status(404).json("The reminder with the given ID was not found");
-  res.json(reminder); // Return the found reminder
-});
 
 // POST a new reminder
 router.post("/", (req, res) => {
@@ -64,6 +56,15 @@ router.delete("/:id", (req, res) => {
   } else {
     return res.status(404).json({ message: "Reminder not found" }); // Reminder not found
   }
+});
+
+// GET a specific reminder by ID
+router.get("/:id", (req, res) => {
+  // Find the reminder with the given ID
+  const reminder = reminders.find((reminder) => reminder.id === req.params.id);
+  if (!reminder)
+    return res.status(404).json("The reminder with the given ID was not found");
+  res.json(reminder); // Return the found reminder
 });
 
 export default router;
